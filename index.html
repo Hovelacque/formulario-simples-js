@@ -1,15 +1,43 @@
 <html>
 
+<head>
+    <script>
+        function clique() {
+            const nome = document.querySelector("#Nome");
+            const idade = document.querySelector("#Idade");
+            const estudade = document.querySelector("#Estudante");
+            const formado = document.querySelector("#Formado");
+            let status;
+            if (estudade.checked)
+                status = "Estudante";
+            else
+                status = "Formado";
+
+            const tbody = document.querySelector("tbody");
+            tbody.innerHTML += `
+                <tr>
+                    <td>${nome.value}</td>
+                    <td>${idade.value}</td>
+                    <td>${status}</td>
+                </tr>
+            `
+            nome.value = ""
+            idade.value = ""
+        }
+    </script>
+</head>
+
 <body>
     <label for="Nome">Nome:</label>
     <input type="text" id="Nome" />
     <label for="Idade">Idade:</label>
     <input type="number" id="Idade" />
+
     <input type="radio" id="Estudante" name="status" value="Estudante" checked />
     <label for="Estudante">Estudante</label>
     <input type="radio" id="Formado" name="status" value="Formado" />
     <label for="Formado">Formado</label>
-    <button>Adicionar</button>
+    <button onclick="clique()">Adicionar</button>
 
     <table>
         <thead>
@@ -28,12 +56,15 @@
         </tbody>
     </table>
     <style>
-        table, th, td {
+        table,
+        th,
+        td {
             border: 1px solid #ddd;
             border-collapse: collapse;
             padding: 10px;
         }
-        table{
+
+        table {
             margin-top: 30px;
         }
     </style>
